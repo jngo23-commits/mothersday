@@ -61,7 +61,15 @@
             font-family: 'Playfair Display', serif;
             padding: 0 10px;
         }
-        .signature { font-size: 2.8rem; color: #ad1457; margin-bottom: 20px; }
+        .signature { font-size: 2.8rem; color: #ad1457; margin-bottom: 10px; }
+
+        /* Audio Player Styling */
+        .audio-player {
+            width: 80%;
+            margin: 10px auto 30px auto;
+            opacity: 0.7;
+            display: block;
+        }
     </style>
 </head>
 <body>
@@ -87,19 +95,31 @@ I hope Claire, your friends and family spoil you on your special day. I hope you
         </div>
 
         <p class="signature">Johnny</p>
+
+        <audio id="myAudio" class="audio-player" controls>
+            <source src="mothersday.mp3" type="audio/mpeg">
+            Your browser does not support the audio element.
+        </audio>
     </div>
 
     <script>
         function openCard() {
             const front = document.getElementById('cardFront');
             const letter = document.getElementById('letterPage');
+            const audio = document.getElementById('myAudio');
             
+            // Start the flip animation
             front.style.transform = "rotateY(90deg)"; 
             front.style.opacity = "0";
 
             setTimeout(() => {
                 front.classList.add('hidden');
                 letter.classList.remove('hidden');
+                
+                // Play the audio!
+                audio.play().catch(function(error) {
+                    console.log("Autoplay was prevented. Amy can still hit play manually.");
+                });
             }, 600);
         }
     </script>
